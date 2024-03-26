@@ -114,7 +114,7 @@ impl Build {
             cmd.args(include_args);
             cmd.args([
                 "-maxrregcount=24",
-                "-arch=sm_35",
+                "-arch=sm_80",
                 "-Xptxas",
                 "-astoolspatch",
                 "--keep-device-functions",
@@ -185,7 +185,7 @@ impl Build {
             .map(|d| format!("-I{}", &d.to_string_lossy()))
             .collect();
 
-        let mut compiler_flags = vec!["-arch=sm_35", "-Xcompiler", "-fPIC"];
+        let mut compiler_flags = vec!["-arch=sm_80", "-Xcompiler", "-fPIC"];
         if self.warnings {
             compiler_flags.extend(["-Xcompiler", "-Wall"]);
         }

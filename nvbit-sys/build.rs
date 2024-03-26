@@ -301,9 +301,12 @@ fn main() {
     build_utils_bridge([&nvbit_include_path]);
 
     let cuda_paths = find_cuda::find_cuda();
-    // println!("cargo:warning=cuda paths: {cuda_paths:?}");
+    println!("cargo:warning=cuda paths: {cuda_paths:?}");
     for cuda_path in &cuda_paths {
-        println!("cargo:rustc-link-search=native={}", cuda_path.display());
+        if cuda_path.to_str().unwrap().contains("11.7") {
+            println!("cargo:warning=cuda paths: {cuda_path:?}");
+            println!("cargo:rustc-link-search=native={}", cuda_path.display());
+        }
     }
 
     println!("cargo:rustc-link-lib=static=nvbit");
